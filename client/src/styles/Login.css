@@ -1,0 +1,27 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;400;900&family=Poppins:wght@200;400;700;800&display=swap');
+
+.login-page {
+  font-family: 'Poppins',sans-serif;
+  width: 100vw;
+  height: 100vh;
+  background-color: lightgreen;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.welcome {
+  font-family: 'Montserrat',sans-serif;
+  font-size: 3.5rem;
+  font-weight: 900;
+  text-align: center;
+}
+.githubOAuth {
+
+  border: 2px solid black;
+  color: black;
+  padding: 1em 1.5em;
+  background: white;
+  border-radius: 50px;
+}
