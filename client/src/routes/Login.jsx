@@ -12,7 +12,7 @@ const Login = () => {
     <div className="login-page">
       <h1 className="welcome">Welcome to CS Social! {data.data}</h1>
       <div className="login-form-container">
-        <a href="http://localhost:8000/auth" className="githubOAuth">Sign In Using Github</a>
+        <a href="https://codesmith-social.herokuapp.com/auth" className="githubOAuth">Sign In Using Github</a>
       </div>
     </div>
   )

@@ -13,11 +13,11 @@ require('dotenv').config();
 
 const app = express();
 
-const PORT = 8000;
+const PORT = process.env.PORT || 8000;
 
 app.use(cors());
 app.use(express.json());
-app.use(express.static(path.join(__dirname, '../client/build')));
+// app.use(express.static(path.join(__dirname, '../client/build')));
 app.use(cookieParser());
 
 // connect to atlas DB
@@ -58,7 +58,7 @@ app.get('/OAuth', (req, res, next) => {
       console.log(response.data.access_token);
       res.locals.token = response.data.access_token;
       console.log(`token: ${res.locals.token}`);
-      res.redirect('http://localhost:3000/home');
+      res.redirect('https://bright-horse-288761.netlify.app/home');
     })
     .catch((err) => next({
       log: 'Failed to authenticate github user',

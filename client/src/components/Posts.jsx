@@ -11,7 +11,7 @@ const Posts = (props) => {
 
   const getPostCreator = async () => {
     try {
-      const result = await axios.get(`http://localhost:8000/user/${_id}`);
+      const result = await axios.get(`https://codesmith-social.herokuapp.com/user/${_id}`);
       setUsers(result.data);
     }
     catch(err) {
