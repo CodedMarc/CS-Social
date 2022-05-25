@@ -1,11 +1,12 @@
 import React from 'react'
 import Navbar from '../components/Navbar';
+import '../styles/Home.css';
 
 const Messages = () => {
   return (
-    <div>
+    <div id="Home">
       <Navbar />
-      <h1 className="testt">Messages</h1>
+      <h1 className="Content">Messages</h1>
     </div>
   )
 }

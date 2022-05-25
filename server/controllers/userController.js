@@ -21,11 +21,28 @@ userController.getAllUsers = async (req, res, next) => {
   }
 };
 
-userController.getUser = async (req, res, next) => {
+userController.getUserByName = async (req, res, next) => {
   const getName = req.params.name.toLowerCase();
   try {
     console.log('trying to get a user');
     const response = await User.find({ name: getName });
+    console.log(response);
+    res.locals.user = response;
+    return next();
+  } catch (err) {
+    return next({
+      log: 'failed to get a user',
+      status: 400,
+      message: { err },
+    });
+  }
+};
+userController.getUserById = async (req, res, next) => {
+  const { id } = req.params;
+  console.log('ID: ', id);
+  try {
+    console.log('trying to get a user');
+    const response = await User.findById(id);
     console.log(response);
     res.locals.user = response;
     return next();
@@ -42,10 +59,13 @@ userController.getUser = async (req, res, next) => {
 userController.createUser = async (req, res, next) => {
   const name = req.body.name.trim().toLowerCase();
   const email = req.body.email.trim().toLowerCase();
+  const { imgURL } = req.body;
+
   try {
     const create = await User.create({
       name,
       email,
+      imgURL,
     });
     console.log(`created ${create}`);
     res.locals.createdUser = create;

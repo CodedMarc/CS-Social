@@ -1,0 +1,12 @@
+#Home {
+  display: grid;
+  grid-template-columns: 1fr 3fr repeat(3, 0);
+  grid-template-rows: repeat(5, 1fr);
+  grid-column-gap: 0px;
+  grid-row-gap: 0px;
+  overflow:hidden;
+  max-width: 100vw;
+  max-height: 100vh;
+  }
+.Nav { grid-area: 1 / 1 / 6 / 2; }
+.Content { grid-area: 1 / 2 / 6 / 6; }

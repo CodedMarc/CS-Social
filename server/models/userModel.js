@@ -8,6 +8,7 @@ const userSchema = new Schema({
   email: {
     type: String, required: true, match: /.+\@.+\..+/, unique: true,
   },
+  imgURL: { type: String, required: true },
   created_at: { type: Date, default: Date.now },
 });
 

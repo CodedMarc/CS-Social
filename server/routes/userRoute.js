@@ -9,7 +9,10 @@ router.get('/', userController.getAllUsers, (req, res) => {
 });
 
 // GET ONE USER
-router.get('/:name', userController.getUser, (req, res) => {
+router.get('/name/:name', userController.getUserByName, (req, res) => {
+  res.status(200).json(res.locals.user);
+});
+router.get('/:id', userController.getUserById, (req, res) => {
   res.status(200).json(res.locals.user);
 });
 
