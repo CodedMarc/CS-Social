@@ -1,8 +1,12 @@
 import React from 'react'
+import Navbar from '../components/Navbar';
 
 const Messages = () => {
   return (
-    <div>Messages</div>
+    <div>
+      <Navbar />
+      <h1 className="testt">Messages</h1>
+    </div>
   )
 }
 

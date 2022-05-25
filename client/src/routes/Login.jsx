@@ -12,7 +12,7 @@ const Login = () => {
     <div className="login-page">
       <h1 className="welcome">Welcome to CS Social! {data.data}</h1>
       <div className="login-form-container">
-        <Link to='/auth' className="githubOAuth">Sign In Using Github</Link>
+        <a href="/auth" className="githubOAuth">Sign In Using Github</a>
       </div>
     </div>
   )

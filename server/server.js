@@ -3,8 +3,10 @@
 const express = require('express');
 const cors = require('cors');
 const path = require('path');
+const axios = require('axios');
 const mongoose = require('mongoose');
 const cookieParser = require('cookie-parser');
+// const gitRoute = require('./routes/gitRoute');
 const postsRoute = require('./routes/postsRoute');
 const userRoute = require('./routes/userRoute');
 require('dotenv').config();
@@ -33,9 +35,38 @@ mongoose.connect(
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, '../client/build'));
 });
+
+// GITHUB OAUTH
+// taken to login
 app.get('/auth', (req, res) => {
-  res.redirect(`https://github.com/login/oauth/authorize?client_id=${process.env.GIT_ID}`);
+  console.log('landed on /auth');
+  res.redirect(`https://github.com/login/oauth/authorize?client_id=${process.env.GIT_ID}&scope=read:org&scope=read:user&scope=user:email`);
 });
+// redirects back to this url to get user data
+app.get('/OAuth', (req, res, next) => {
+  const { code } = req.query;
+  const body = {
+    client_id: process.env.GIT_ID,
+    client_secret: process.env.GIT_SECRET,
+    code,
+  };
+  const options = {
+    headers: { accept: 'application/json' },
+  };
+  axios.post('https://github.com/login/oauth/access_token', body, options)
+    .then((response) => {
+      console.log(response);
+      res.locals.token = response.data.access_token;
+      console.log(`token: ${res.locals.token}`);
+      res.redirect('http://localhost:8000/home');
+    })
+    .catch((err) => next({
+      log: 'Failed to authenticate github user',
+      status: 400,
+      message: { err },
+    }));
+});
+
 // Posts Route
 app.use('/posts', postsRoute);
 app.use('/user', userRoute);
