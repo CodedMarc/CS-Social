@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import '../styles/Navbar.css'
 
 const Navbar = (props) => {
+  
   return (
     <nav>
       <a className="logo" href="/">CS Social</a>

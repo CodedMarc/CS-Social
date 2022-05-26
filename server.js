@@ -59,7 +59,7 @@ passport.use(new GitHubStrategy(
   {
     clientID: process.env.GIT_ID,
     clientSecret: process.env.GIT_SECRET,
-    callbackURL: 'http://localhost:8000/OAuth',
+    callbackURL: 'https://codesmith-social.herokuapp.com/OAuth',
   },
   ((accessToken, refreshToken, profile, done) => {
     User.findOrCreate({
