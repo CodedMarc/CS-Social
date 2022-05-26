@@ -10,7 +10,7 @@ const Login = () => {
       </video>
       <h1 className="welcome">Welcome to CS Social!</h1>
       <div className="login-form-container">
-        <a href="https://codesmith-social.herokuapp.com/auth" className="githubOAuth">Sign In Using Github</a>
+        <a href="http://localhost:8000/auth" className="githubOAuth">Sign In Using Github</a>
       </div>
     </div>
   )

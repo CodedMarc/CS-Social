@@ -1,3 +1,4 @@
+/* eslint-disable camelcase */
 /* eslint-disable consistent-return */
 /* eslint-disable no-console */
 const User = require('../models/userModel');
@@ -57,13 +58,15 @@ userController.getUserById = async (req, res, next) => {
 
 // CREATE A NEW USER IN DB
 userController.createUser = async (req, res, next) => {
-  const name = req.body.name.trim().toLowerCase();
-  const email = req.body.email.trim().toLowerCase();
-  const { imgURL } = req.body;
+  const {
+    name, username, git_id, email, imgURL,
+  } = req.body;
 
   try {
     const create = await User.create({
       name,
+      username,
+      git_id,
       email,
       imgURL,
     });

@@ -6,18 +6,21 @@ import '../styles/posts.css';
 
 const Posts = (props) => {
   const [users, setUsers] = useState({});
-  let { _id, content, created_at} = props;
+  const { _id, content, created_at, user, postId } = props;
   const timestamp = new Date(created_at).toUTCString();
 
   const getPostCreator = async () => {
     try {
-      const result = await axios.get(`https://codesmith-social.herokuapp.com/user/${_id}`);
-      console.log(result.data);
+      const result = await axios.get(`http://localhost:8000/user/${_id}`);
+      // console.log(result.data);
       setUsers(result.data);
     }
     catch(err) {
       console.log('ERR GETTING USER: ', err);
     }
+  }
+  const deletePost = async () => {
+    await axios.delete(`http://localhost:8000/posts/${postId}`)
   }
 
   useEffect(() => {
@@ -30,6 +33,7 @@ const Posts = (props) => {
       <p className="userName">{users.username ? users.username : users.name}</p>
       <p className="postContent">{content}</p>
       <p className="timestamp">{timestamp}</p>
+      <i onClick={deletePost} class="fa fa-trash" aria-hidden="true"></i>
     </div>
   )
 }

@@ -59,20 +59,27 @@ passport.use(new GitHubStrategy(
   {
     clientID: process.env.GIT_ID,
     clientSecret: process.env.GIT_SECRET,
-    callbackURL: 'https://codesmith-social.herokuapp.com/OAuth',
+    callbackURL: '/OAuth',
   },
   ((accessToken, refreshToken, profile, done) => {
-    User.findOrCreate({
-      name: profile.displayName,
-      username: profile.username,
-      git_id: profile.id,
-      email: profile.email,
-      imgURL: profile.photos[0].value,
-    }, (err, user) => {
-      console.log(user);
-      app.locals.loggedInUser = user;
-      done(err, user);
-    });
+    User.findOrCreate(
+      {
+        git_id: profile.id,
+      },
+      {
+        name: profile.displayName,
+        username: profile.username,
+        git_id: profile.id,
+        email: profile.email,
+        imgURL: profile.photos[0].value,
+      },
+
+      (err, user) => {
+        console.log(user);
+        app.locals.loggedInUser = user;
+        done(err, user);
+      },
+    );
   }),
 ));
 
@@ -82,8 +89,8 @@ app.get('/check', (req, res) => {
 });
 app.get('/auth', passport.authenticate('github', { scope: ['user:email'] }));
 
-app.get('/OAuth', passport.authenticate('github', { failureRedirect: 'https://codesmith-social.herokuapp.com/' }), (req, res) => {
-  res.redirect('https://codesmith-social.herokuapp.com/home');
+app.get('/OAuth', passport.authenticate('github', { failureRedirect: '/' }), (req, res) => {
+  res.redirect('/home');
 });
 
 // GITHUB OAUTH

@@ -9,8 +9,9 @@ const Home = () => {
   const [currentUser, setCurrentUser] = useState({});
 
   const getCurrentUser = async () => {
-    const response = await axios.get('https://codesmith-social.herokuapp.com/check');
+    const response = await axios.get('http://localhost:8000/check');
     setCurrentUser(response.data);
+    console.log(response.data);
   }
   useEffect(() => {
     getCurrentUser();
@@ -20,8 +21,8 @@ const Home = () => {
 
   return (
     <div id="Home">
-      <Navbar currentUser={currentUser}className="Nav"/>
-      <Timeline currentUser={currentUser} className="Timeline"/>
+      <Navbar User={currentUser}className="Nav"/>
+      <Timeline User={currentUser} className="Timeline"/>
     </div>
   )
 }
