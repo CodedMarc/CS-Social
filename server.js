@@ -82,8 +82,8 @@ app.get('/check', (req, res) => {
 });
 app.get('/auth', passport.authenticate('github', { scope: ['user:email'] }));
 
-app.get('/OAuth', passport.authenticate('github', { failureRedirect: '/' }), (req, res) => {
-  res.redirect('/home');
+app.get('/OAuth', passport.authenticate('github', { failureRedirect: 'https://codesmith-social.herokuapp.com/' }), (req, res) => {
+  res.redirect('https://codesmith-social.herokuapp.com/home');
 });
 
 // GITHUB OAUTH

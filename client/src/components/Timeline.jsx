@@ -23,6 +23,7 @@ const Timeline = (props) => {
       postContent: postMessage,
     })
     setPostMessage('');
+    window.location.assign('/');
   }
 
   // INPUT CHANGE
