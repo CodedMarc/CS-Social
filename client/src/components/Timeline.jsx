@@ -3,23 +3,43 @@ import axios from 'axios';
 import Posts from './Posts';
 import '../styles/Timeline.css'
 
-const Timeline = () => {
-
+const Timeline = (props) => {
+  const { currentUser } = props;
   const [tlPosts, setPosts] = useState([]);
+  const [postMessage, setPostMessage] = useState('');
 
+  // DISPLAY ALL POSTS ON TIMELINE
   const getPosts = async () => {
-    const result = await axios.get('https://codesmith-social.herokuapp.com/posts')
+    // CHANGE IN PROD/DEV
+    const result = await axios.get('http://localhost:8000/posts')
     for (let i = result.data.length - 1; i >= 0; i --) {
-      setPosts(oldArray => [...oldArray,  <Posts key={result.data[i]._id} name="Marc" _id={result.data[i].posterID} content={result.data[i].postContent} created_at={result.data[i].created_at}/>])
+      setPosts(oldArray => [...oldArray,  <Posts key={result.data[i]._id} _id={result.data[i].posterID} content={result.data[i].postContent} created_at={result.data[i].created_at}/>])
     }
   }
+  // SEND A POST TO DISPLAY
+  const sendPosts = async () => {
+    await axios.post('http://localhost:8000/posts', {
+      posterID: currentUser._id,
+      postContent: postMessage,
+    })
+    setPostMessage('');
+  }
 
+  // INPUT CHANGE
+  const handleChange = (e) => {
+    setPostMessage(e.target.value);
+  }
+  // load posts on component load
   useEffect(() => {
     getPosts();
   }, []);
 
   return (
     <div id="Timeline">
+      <div className="postBox">
+        <input onChange={handleChange}type="text" placeholder="What's on your mind?" />
+        <button onClick={sendPosts}>Post</button>
+      </div>
       {tlPosts}
     </div>
   )

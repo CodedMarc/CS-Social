@@ -6,12 +6,13 @@ import '../styles/posts.css';
 
 const Posts = (props) => {
   const [users, setUsers] = useState({});
-  const { _id, name, content, created_at} = props;
+  let { _id, content, created_at} = props;
   const timestamp = new Date(created_at).toUTCString();
 
   const getPostCreator = async () => {
     try {
-      const result = await axios.get(`https://codesmith-social.herokuapp.com/user/${_id}`);
+      const result = await axios.get(`http://localhost:8000/user/${_id}`);
+      console.log(result.data);
       setUsers(result.data);
     }
     catch(err) {
@@ -26,7 +27,7 @@ const Posts = (props) => {
   return (
     <div id="POST">
       <img className="pp" alt="profile pic" src={users.imgURL} />
-      <p className="userName">{name}</p>
+      <p className="userName">{users.username ? users.username : users.name}</p>
       <p className="postContent">{content}</p>
       <p className="timestamp">{timestamp}</p>
     </div>
