@@ -1,12 +1,25 @@
 #Home {
+  background: url('../assets/bg_pic.jpg');
+  background-position: center;
+  background-size: cover;
+  color: black;
   display: grid;
-  grid-template-columns: 1fr 3fr repeat(3, 0);
+  grid-template-columns: 1fr 5fr repeat(3, 0);
   grid-template-rows: repeat(5, 1fr);
   grid-column-gap: 0px;
   grid-row-gap: 0px;
   overflow:hidden;
+  min-height: 100vh;
+  min-width: 100vw;
   max-width: 100vw;
   max-height: 100vh;
   }
 .Nav { grid-area: 1 / 1 / 6 / 2; }
 .Content { grid-area: 1 / 2 / 6 / 6; }
+
+@media screen and (max-width: 700px) {
+  #Home {
+    display: flex;
+    flex-direction: column;
+  }
+}

@@ -6,7 +6,7 @@ const Messages = () => {
   return (
     <div id="Home">
       <Navbar />
-      <h1 className="Content">Messages</h1>
+      <h1 className="Content">Messages Coming Soon! ...? maybe.</h1>
     </div>
   )
 }

@@ -7,10 +7,10 @@ const Navbar = () => {
     <nav>
       <a className="logo" href="/">CS Social</a>
       <ul className="nav-links">
-        <Link to='/home'>Home</Link>
-        <Link to='/messages'>Messages</Link>
+        <Link to='/home'><i class="fa-solid fa-house-chimney-user"></i></Link>
+        <Link to='/messages'><i class="fa-solid fa-envelope"></i></Link>
+        <Link to='/profile'><i class="fa-solid fa-user"></i></Link>
       </ul>
-        <Link className="profile" to='/profile'>Profile</Link>
     </nav>
   )
 }

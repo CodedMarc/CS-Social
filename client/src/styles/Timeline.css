@@ -5,10 +5,11 @@
 }
 
 #Timeline {
+  padding: 2% 10%;
   display: flex;
   gap: 25px;
-  flex-direction: column-reverse;
-  justify-content: flex-end;
+  flex-direction: column;
+  justify-content: flex-start;
   overflow-y: scroll;
 }
 

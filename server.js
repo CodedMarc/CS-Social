@@ -17,30 +17,27 @@ const PORT = process.env.PORT || 8000;
 
 app.use(cors());
 app.use(express.json());
-app.use(express.static(path.join(__dirname, '../client/build')));
+app.use(express.static(path.join(__dirname, './client/build')));
 app.use(cookieParser());
 
 // connect to atlas DB
-mongoose.connect(
-  process.env.MONGO_URI,
-  {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  },
-).then(() => {
-  console.log('Connected to DB');
-});
+// mongoose.connect(
+//   process.env.MONGO_URI,
+//   {
+//     useNewUrlParser: true,
+//     useUnifiedTopology: true,
+//   },
+// ).then(() => {
+//   console.log('Connected to DB');
+// });
 
 // root
-// app.get('/', (req, res) => {
-//   res.sendFile(path.join(__dirname, '../client/build'));
-// });
 
 // GITHUB OAUTH
 // taken to login
 app.get('/auth', (req, res) => {
   console.log('landed on /auth');
-  res.redirect(`https://github.com/login/oauth/authorize?client_id=${process.env.GIT_ID}&scope=read:org&scope=read:user&scope=user:email`);
+  res.redirect(`https://github.com/login/oauth/authorize?client_id=${process.env.GIT_ID}&scope=read:org&scope=read:user&user:email`);
 });
 // redirects back to this url to get user data
 app.get('/OAuth', (req, res, next) => {
@@ -58,7 +55,7 @@ app.get('/OAuth', (req, res, next) => {
       console.log(response.data.access_token);
       res.locals.token = response.data.access_token;
       console.log(`token: ${res.locals.token}`);
-      res.redirect('https://bright-horse-288761.netlify.app/home');
+      res.redirect('/home');
     })
     .catch((err) => next({
       log: 'Failed to authenticate github user',
@@ -71,6 +68,10 @@ app.get('/OAuth', (req, res, next) => {
 app.use('/posts', postsRoute);
 app.use('/user', userRoute);
 
+app.get('*', (req, res) => {
+  console.log('umm...');
+  res.sendFile(path.join(__dirname, './client/build/'));
+});
 // Unknown route handler
 app.use((req, res) => res.sendStatus(404));
 

@@ -1,15 +1,16 @@
 import React from 'react'
+import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 import Navbar from '../components/Navbar';
 import Timeline from '../components/Timeline';
 import '../styles/Home.css';
 
-const Home = () => {
+const Profile = () => {
   return (
     <div id="Home">
       <Navbar className="Nav"/>
-      <Timeline className="Timeline"/>
+      <h1>PROFILE HERE</h1>
     </div>
   )
 }
 
-export default Home
+export default Profile

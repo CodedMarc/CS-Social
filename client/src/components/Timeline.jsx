@@ -8,13 +8,11 @@ const Timeline = () => {
   const [tlPosts, setPosts] = useState([]);
 
   const getPosts = async () => {
-    const result = await axios.get('http://localhost:8000/posts')
-    result.data.forEach(el => {
-      setPosts(oldArray => [...oldArray,  <Posts key={el._id} name="Marc" _id={el.posterID} content={el.postContent} created_at={el.created_at}/>])
-    })
+    const result = await axios.get('/posts')
+    for (let i = result.data.length - 1; i >= 0; i --) {
+      setPosts(oldArray => [...oldArray,  <Posts key={result.data[i]._id} name="Marc" _id={result.data[i].posterID} content={result.data[i].postContent} created_at={result.data[i].created_at}/>])
+    }
   }
-
-
 
   useEffect(() => {
     getPosts();
