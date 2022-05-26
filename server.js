@@ -53,6 +53,7 @@ app.get('/OAuth', (req, res, next) => {
   axios.post('https://github.com/login/oauth/access_token', body, options)
     .then((response) => {
       console.log(response.data.access_token);
+      res.cookie('github_jwt', response.data.access_token);
       res.locals.token = response.data.access_token;
       console.log(`token: ${res.locals.token}`);
       res.redirect('/home');
