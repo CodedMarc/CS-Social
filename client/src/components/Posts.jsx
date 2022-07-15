@@ -11,7 +11,7 @@ const Posts = (props) => {
 
   const getPostCreator = async () => {
     try {
-      const result = await axios.get(`http://localhost:8000/user/${_id}`);
+      const result = await axios.get(`/user/${_id}`);
       // console.log(result.data);
       setUsers(result.data);
     }
@@ -20,7 +20,8 @@ const Posts = (props) => {
     }
   }
   const deletePost = async () => {
-    await axios.delete(`http://localhost:8000/posts/${postId}`)
+    await axios.delete(`/posts/${postId}`)
+    .then(window.location.reload())
   }
 
   useEffect(() => {

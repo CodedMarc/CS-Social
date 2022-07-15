@@ -13,14 +13,14 @@ const Timeline = (props) => {
   // DISPLAY ALL POSTS ON TIMELINE
   const getPosts = async () => {
     // CHANGE IN PROD/DEV
-    const result = await axios.get('http://localhost:8000/posts')
+    const result = await axios.get('/posts')
     for (let i = result.data.length - 1; i >= 0; i --) {
       setPosts(oldArray => [...oldArray,  <Posts key={result.data[i]._id} postId={result.data[i]._id} user={String(User._id)} _id={result.data[i].posterID} content={result.data[i].postContent} created_at={result.data[i].created_at} />])
     }
   }
   // SEND A POST TO DISPLAY
   const sendPosts = async () => {
-    await axios.post('http://localhost:8000/posts', {
+    await axios.post('/posts', {
       posterID: User._id,
       postContent: postMessage,
     })
