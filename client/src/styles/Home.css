@@ -4,7 +4,7 @@
   background-size: cover;
   color: black;
   display: grid;
-  grid-template-columns: 1fr 5fr repeat(3, 0);
+  grid-template-columns: 1fr 7fr repeat(3, 0);
   grid-template-rows: repeat(5, 1fr);
   grid-column-gap: 0px;
   grid-row-gap: 0px;

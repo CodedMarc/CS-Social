@@ -9,7 +9,7 @@ const Home = () => {
   const [currentUser, setCurrentUser] = useState({});
 
   const getCurrentUser = async () => {
-    const response = await axios.get('http://localhost:8000/check');
+    const response = await axios.get('/check');
     setCurrentUser(response.data);
     console.log(response.data);
   }

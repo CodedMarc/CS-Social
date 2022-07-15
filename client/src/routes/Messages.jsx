@@ -7,7 +7,7 @@ const Messages = () => {
   return (
     <div id="Home">
       <Navbar />
-      <h1 className="messages-coming-soon">Messages Coming Soon! ...? maybe.</h1>
+      <h1 className="messages-coming-soon">http://localhost:8000/messages</h1>
     </div>
   )
 }
